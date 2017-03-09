@@ -1,5 +1,5 @@
 Instructions
-
+ 
 All kata requirements do not need to be coded for the kata to be submitted, but requirements implemented should be implemented with best practices. This is a showcase of skill, not speed. 
 
 The candidate should let us know what kata requirements were implemented when submitting. 
