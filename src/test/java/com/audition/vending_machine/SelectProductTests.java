@@ -25,7 +25,7 @@ public class SelectProductTests {
     @Test
     public void SelectProductChips(){
 
-        int productId = 2;
+        int productId = 3;
 
         vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
         vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
@@ -40,6 +40,31 @@ public class SelectProductTests {
         Assert.assertEquals(actualMessage,expectedMessage);
 
     }
+
+    @Test
+    public void SelectProductCandy(){
+
+        int productId = 3;
+
+        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
+        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
+        vendingMachine.acceptCoins(new Coin(CoinType.DIME));
+        vendingMachine.acceptCoins(new Coin(CoinType.NICKEL));
+
+        vendingMachine.selectProduct(productId);
+
+        String actualMessage = vendingMachine.getDisplay();
+        String expectedMessage = "Thank You";
+
+
+
+        Assert.assertEquals(actualMessage,expectedMessage);
+
+    }
+
+
+
+
 
     @Test
     public void SelectProductColasًNotEnoughMoney(){
