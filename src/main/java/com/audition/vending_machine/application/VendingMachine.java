@@ -81,7 +81,8 @@ public class VendingMachine {
     }
 
     private void dispenseProduct(Product selectedProduct) {
-        currentAmount -= selectedProduct.getProductPrice();
 
+        coinReturn = currentAmount - selectedProduct.getProductPrice();
+        currentAmount = 0.0;
     }
 }
