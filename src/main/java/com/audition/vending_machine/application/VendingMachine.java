@@ -1,5 +1,9 @@
-package com.audition.vending_machine;
+package com.audition.vending_machine.application;
 
+import com.audition.vending_machine.validator.CoinValidator;
+import com.audition.vending_machine.model.Coin;
+import com.audition.vending_machine.model.CoinType;
+import com.audition.vending_machine.model.Product;
 import com.audition.vending_machine.dataAccess.DataAccess;
 import com.audition.vending_machine.dataAccess.DataAccessMock;
 

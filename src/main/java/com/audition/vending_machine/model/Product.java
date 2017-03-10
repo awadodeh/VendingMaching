@@ -1,4 +1,4 @@
-package com.audition.vending_machine;
+package com.audition.vending_machine.model;
 
 /**
  * Created by larrywilson on 3/10/17.

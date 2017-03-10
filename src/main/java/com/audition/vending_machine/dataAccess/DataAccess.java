@@ -1,6 +1,6 @@
 package com.audition.vending_machine.dataAccess;
 
-import com.audition.vending_machine.Product;
+import com.audition.vending_machine.model.Product;
 
 import java.util.Map;
 

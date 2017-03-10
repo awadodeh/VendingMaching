@@ -1,10 +1,8 @@
 package com.audition.vending_machine.dataAccess;
 
-import com.audition.vending_machine.Product;
+import com.audition.vending_machine.model.Product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

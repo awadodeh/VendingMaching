@@ -1,4 +1,7 @@
-package com.audition.vending_machine;
+package com.audition.vending_machine.validator;
+
+import com.audition.vending_machine.model.Coin;
+import com.audition.vending_machine.model.CoinType;
 
 import java.util.ArrayList;
 import java.util.List;

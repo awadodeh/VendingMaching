@@ -1,5 +1,9 @@
 package com.audition.vending_machine;
 
+import com.audition.vending_machine.application.VendingMachine;
+import com.audition.vending_machine.model.Coin;
+import com.audition.vending_machine.model.CoinType;
+import com.audition.vending_machine.validator.CoinValidator;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
