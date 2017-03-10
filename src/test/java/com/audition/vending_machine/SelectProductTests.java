@@ -20,7 +20,7 @@ public class SelectProductTests {
 
 
     @Test
-    public void SelectProductCola(){
+    public void SelectProductChips(){
 
         int productId = 2;
 
@@ -31,6 +31,27 @@ public class SelectProductTests {
 
         String actualMessage = vendingMachine.getDisplay();
         String expectedMessage = "Thank You";
+
+
+
+        Assert.assertEquals(actualMessage,expectedMessage);
+
+    }
+
+    @Test
+    public void SelectProductColasًNotEnoughMoney(){
+
+        int productId = 1;
+
+        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
+
+        vendingMachine.selectProduct(productId);
+
+        double currentAmount = vendingMachine.getCurrentAmount();
+
+        String actualMessage = vendingMachine.getDisplay();
+
+        String expectedMessage = "Insert Coin, Current Amount: " + currentAmount;
 
 
 

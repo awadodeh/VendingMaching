@@ -17,7 +17,9 @@ public class DataAccessMock implements DataAccess{
     public DataAccessMock() {
 
         products = new HashMap<Integer, Product>();
+        Product cola = new Product(1,"cola",1.0);
         Product chips = new Product(2,"chips",0.5);
+        products.put(cola.getProductId(),cola);
         products.put(chips.getProductId(),chips);
     }
 

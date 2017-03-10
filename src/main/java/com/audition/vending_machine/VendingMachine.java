@@ -66,15 +66,17 @@ public class VendingMachine {
         if(dataAccess.getProducts().containsKey(productId)){
 
             if(currentAmount >= selectedProduct.getProductPrice()){
+                display = "Thank You";
                 dispenseProduct(selectedProduct);
+            }else{
+                display = "Insert Coin, Current Amount: " + currentAmount;
+
             }
         }
 
     }
 
     private void dispenseProduct(Product selectedProduct) {
-        display = "Thank You";
-
         currentAmount -= selectedProduct.getProductPrice();
 
     }
