@@ -70,12 +70,13 @@ public class AcceptCoinsTest {
 
         vendingMachine.acceptCoins(coin);
 
-        double actualAmount = 0.1;
+        double actualAmount = 0.01;
 
         double expectedAmount = vendingMachine.getCoinReturn();
 
 
-//        Assert.assertFalse(actualAmount != expectedAmount);
+        Assert.assertFalse(actualAmount != expectedAmount);
+
     }
 
 
