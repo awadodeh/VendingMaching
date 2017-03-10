@@ -23,5 +23,19 @@ public class AcceptCoinsTest {
         Assert.assertEquals(actualAmount,expectedAmount);
     }
 
+    @Test
+    public void insertDimeTest(){
+
+        Coin coin = new Coin(CoinType.DIME);
+
+        VendingMachine vendingMachine = new VendingMachine();
+
+        vendingMachine.acceptCoins(coin);
+        double actualAmount = 0.1;
+
+        double expectedAmount = vendingMachine.getCurrentAmount();
+
+        Assert.assertEquals(actualAmount,expectedAmount);
+    }
 
 }
