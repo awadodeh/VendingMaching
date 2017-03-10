@@ -5,7 +5,8 @@ package com.audition.vending_machine;
  */
 public class VendingMachine {
     private double currentAmount;
-    private double coinRetrun;
+    private double coinReturn;
+    private String display = "Insert Coin";
 
     public void acceptCoins(Coin coin) {
 
@@ -13,7 +14,7 @@ public class VendingMachine {
             double insertedValue =  coin.getCoinType().getValue();
             currentAmount += insertedValue;
         }else{
-            coinRetrun +=coin.getCoinType().getValue();
+            coinReturn +=coin.getCoinType().getValue();
         }
     }
 
@@ -21,7 +22,11 @@ public class VendingMachine {
         return currentAmount;
     }
 
-    public double getCoinRetrun() {
-        return coinRetrun;
+    public double getCoinReturn() {
+        return coinReturn;
+    }
+
+    public String getDisplay() {
+        return display;
     }
 }

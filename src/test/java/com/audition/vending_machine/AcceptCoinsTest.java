@@ -3,7 +3,6 @@ package com.audition.vending_machine;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.testng.annotations.BeforeTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,6 @@ public class AcceptCoinsTest {
 
     }
 
-
     @Test
     public void insertNickelTest(){
 
@@ -47,6 +45,7 @@ public class AcceptCoinsTest {
         double expectedAmount = vendingMachine.getCurrentAmount();
 
         Assert.assertEquals(actualAmount,expectedAmount);
+
     }
 
     @Test
@@ -73,7 +72,7 @@ public class AcceptCoinsTest {
 
         double actualAmount = 0.1;
 
-        double expectedAmount = vendingMachine.getCoinRetrun();
+        double expectedAmount = vendingMachine.getCoinReturn();
 
 
 //        Assert.assertFalse(actualAmount != expectedAmount);
@@ -81,19 +80,31 @@ public class AcceptCoinsTest {
 
 
 
-//    @Test
-//    public void insertQuarterTest(){
-//
-//        Coin coin = new Coin(CoinType.QUARTER);
-//
-//        vendingMachine.acceptCoins(coin);
-//
-//        double actualAmount = 0.25;
-//
-//        double expectedAmount = vendingMachine.getCurrentAmount();
-//
-//        Assert.assertEquals(actualAmount,expectedAmount);
-//    }
+    @Test
+    public void insertQuarterTest(){
+
+        Coin coin = new Coin(CoinType.QUARTER);
+
+        vendingMachine.acceptCoins(coin);
+
+        double actualAmount = 0.25;
+
+        double expectedAmount = vendingMachine.getCurrentAmount();
+
+        Assert.assertEquals(actualAmount,expectedAmount);
+    }
+
+
+
+    @Test
+    public void showDisplay(){
+
+        String actualMessage = vendingMachine.getDisplay();
+
+        String expectMessage = "INSERT COIN";
+
+        Assert.assertEquals(expectMessage.toLowerCase(),actualMessage.toLowerCase());
+    }
 
 
 }
