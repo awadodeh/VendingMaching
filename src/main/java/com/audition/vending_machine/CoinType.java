@@ -4,9 +4,10 @@ package com.audition.vending_machine;
  * Created by larrywilson on 3/9/17.
  */
 public enum CoinType {
-
+    PENNIE(0.01),
     NICKEL(0.05),
-    DIME(0.1);
+    DIME(0.1),
+    QUARTER(0.25);
 
     private double value;
 

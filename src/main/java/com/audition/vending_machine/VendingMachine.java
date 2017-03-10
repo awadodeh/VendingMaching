@@ -5,15 +5,23 @@ package com.audition.vending_machine;
  */
 public class VendingMachine {
     private double currentAmount;
+    private double coinRetrun;
 
     public void acceptCoins(Coin coin) {
 
-        double insertedValue =  coin.getCoinType().getValue();
-        currentAmount += insertedValue;
-
+        if(CoinValidator.isCoinValid(coin)){
+            double insertedValue =  coin.getCoinType().getValue();
+            currentAmount += insertedValue;
+        }else{
+            coinRetrun +=coin.getCoinType().getValue();
+        }
     }
 
     public double getCurrentAmount() {
         return currentAmount;
+    }
+
+    public double getCoinRetrun() {
+        return coinRetrun;
     }
 }
