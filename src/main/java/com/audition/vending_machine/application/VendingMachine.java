@@ -85,4 +85,18 @@ public class VendingMachine {
         coinReturn = currentAmount - selectedProduct.getProductPrice();
         currentAmount = 0.0;
     }
+
+    public double returnCoins() {
+
+        if(currentAmount <= 0) {
+            return -1;
+        }
+
+        double temp = currentAmount + coinReturn;
+        currentAmount=0;
+        coinReturn = 0;
+        display= "Insert Coin";
+        return temp;
+
+    }
 }
