@@ -8,11 +8,13 @@ public class Product {
     private int productId;
     private String productName;
     private double productPrice;
+    private int productQuantity;
 
-    public Product(int productId, String productName, double productPrice) {
+    public Product(int productId, String productName, double productPrice, int productQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
     }
 
     public int getProductId() {
@@ -37,5 +39,13 @@ public class Product {
 
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
     }
 }

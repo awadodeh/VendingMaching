@@ -15,12 +15,12 @@ public class DataAccessMock implements DataAccess{
     public DataAccessMock() {
 
         products = new HashMap<Integer, Product>();
-        Product cola = new Product(1,"cola",1.0);
-        Product chips = new Product(2,"chips",0.5);
-        Product candy = new Product(3,"candy",0.65);
+        Product cola = new Product(1,"cola",1.0,4);
+        Product chips = new Product(2,"chips",0.5,4);
+        Product candy = new Product(3,"candy",0.65,4);
         products.put(cola.getProductId(),cola);
         products.put(chips.getProductId(),chips);
-        products.put(candy.getProductId(),chips);
+        products.put(candy.getProductId(),candy);
     }
 
     public Map<Integer,Product> getProducts() {

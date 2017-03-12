@@ -84,6 +84,10 @@ public class VendingMachine {
 
         coinReturn = currentAmount - selectedProduct.getProductPrice();
         currentAmount = 0.0;
+        int newQuantity = selectedProduct.getProductQuantity() -1;
+
+        selectedProduct.setProductQuantity(newQuantity);
+
     }
 
     public double returnCoins() {
@@ -98,5 +102,16 @@ public class VendingMachine {
         display= "Insert Coin";
         return temp;
 
+    }
+
+    public boolean isSoldOut(int productId) {
+
+        if(dataAccess.getProducts().containsKey(productId)){
+            Product product = dataAccess.getProducts().get(productId);
+            if(product.getProductQuantity() >0){
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -12,12 +12,12 @@ import org.junit.Test;
  */
 public class SelectProductTests {
 
-    VendingMachine vendingMachine;
+    VendingMachine vendingMachine = new VendingMachine();
 
     @Before
     public void setUpVendingMachine(){
 
-        vendingMachine = new VendingMachine();
+//        vendingMachine = ;
 
     }
 
@@ -25,7 +25,7 @@ public class SelectProductTests {
     @Test
     public void SelectProductChips(){
 
-        int productId = 3;
+        int productId = 2;
 
         vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
         vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
