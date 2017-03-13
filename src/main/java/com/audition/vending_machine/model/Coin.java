@@ -3,20 +3,20 @@ package com.audition.vending_machine.model;
 /**
  * Created by larrywilson on 3/9/17.
  */
-public class Coin {
+public enum Coin {
+    PENNIE(0.01),
+    NICKEL(0.05),
+    DIME(0.1),
+    QUARTER(0.25);
 
-    private CoinType coinType;
+    private double value;
 
-    public Coin(CoinType coinType) {
-        this.coinType = coinType;
+    Coin(final double value) {
+        this.value = value;
     }
 
-    public CoinType getCoinType() {
-        return coinType;
-    }
-
-    public void setCoinType(CoinType coinType) {
-        this.coinType = coinType;
+    public double getValue() {
+        return value;
     }
 
 }

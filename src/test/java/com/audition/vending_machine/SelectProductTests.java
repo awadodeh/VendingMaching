@@ -1,89 +1,53 @@
 package com.audition.vending_machine;
 
 import com.audition.vending_machine.application.VendingMachine;
+import com.audition.vending_machine.application.VendingMachineFactory;
+import com.audition.vending_machine.exception.NotSufficientChangeException;
+import com.audition.vending_machine.model.Bucket;
 import com.audition.vending_machine.model.Coin;
-import com.audition.vending_machine.model.CoinType;
+import com.audition.vending_machine.model.Product;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * Created by larrywilson on 3/10/17.
  */
 public class SelectProductTests {
 
-    VendingMachine vendingMachine = new VendingMachine();
+    VendingMachine vendingMachine;
 
     @Before
-    public void setUpVendingMachine(){
-
-//        vendingMachine = ;
-
-    }
-
-
-    @Test
-    public void SelectProductChips(){
-
-        int productId = 2;
-
-        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
-        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
-
-        vendingMachine.selectProduct(productId);
-
-        String actualMessage = vendingMachine.getDisplay();
-        String expectedMessage = "Thank You";
-
-
-
-        Assert.assertEquals(actualMessage,expectedMessage);
+    public void setUpVendingMachine() {
+        vendingMachine = VendingMachineFactory.getVendingMachineInstance();
 
     }
-
-    @Test
-    public void SelectProductCandy(){
-
-        int productId = 3;
-
-        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
-        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
-        vendingMachine.acceptCoins(new Coin(CoinType.DIME));
-        vendingMachine.acceptCoins(new Coin(CoinType.NICKEL));
-
-        vendingMachine.selectProduct(productId);
-
-        String actualMessage = vendingMachine.getDisplay();
-        String expectedMessage = "Thank You";
-
-
-
-        Assert.assertEquals(actualMessage,expectedMessage);
-
-    }
-
-
 
 
 
     @Test
-    public void SelectProductColasًNotEnoughMoney(){
+    public void testBuyItemWithExactPrice()  {
 
-        int productId = 1;
+        vendingMachine.acceptCoin(Coin.QUARTER);
+        vendingMachine.acceptCoin(Coin.QUARTER);
+        vendingMachine.acceptCoin(Coin.QUARTER);
+        vendingMachine.acceptCoin(Coin.QUARTER);
 
-        vendingMachine.acceptCoins(new Coin(CoinType.QUARTER));
+        Bucket<Product, List<Coin>> bucket = null;
 
-        vendingMachine.selectProduct(productId);
+        try {
+            bucket = vendingMachine.selectProductAndCollectChange(Product.COLA);
+        }catch(NotSufficientChangeException ex){
+            ex.printStackTrace();
+        }
 
-        double currentAmount = vendingMachine.getCurrentAmount();
+        Product product = bucket.getFirst();
+        List<Coin> change = bucket.getSecond();
+        Assert.assertEquals(Product.COLA, product);
 
-        String actualMessage = vendingMachine.getDisplay();
-
-        String expectedMessage = "Insert Coin, Current Amount: " + currentAmount;
-
-
-
-        Assert.assertEquals(actualMessage,expectedMessage);
-
+        Assert.assertTrue(change.isEmpty());
     }
+
 }

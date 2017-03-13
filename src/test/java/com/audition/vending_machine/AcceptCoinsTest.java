@@ -1,15 +1,12 @@
 package com.audition.vending_machine;
 
 import com.audition.vending_machine.application.VendingMachine;
+import com.audition.vending_machine.application.VendingMachineFactory;
+import com.audition.vending_machine.exception.NotSufficientChangeException;
 import com.audition.vending_machine.model.Coin;
-import com.audition.vending_machine.model.CoinType;
-import com.audition.vending_machine.validator.CoinValidator;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by larrywilson on 3/9/17.
@@ -17,66 +14,52 @@ import java.util.List;
 public class AcceptCoinsTest {
 
     VendingMachine vendingMachine;
-    List validCoinTypes;
 
     @Before
-    public void setUpVendingMachine(){
+    public void setUpVendingMachine() {
 
-        vendingMachine = new VendingMachine();
-
-
-        validCoinTypes = new ArrayList<CoinType>();
-
-        validCoinTypes.add(CoinType.NICKEL);
-        validCoinTypes.add(CoinType.DIME);
-        validCoinTypes.add(CoinType.QUARTER);
-
-        CoinValidator.setValidCoinTypes(validCoinTypes);
-
-
+        vendingMachine = VendingMachineFactory.getVendingMachineInstance();
 
     }
 
+
     @Test
-    public void insertNickelTest(){
+    public void insertNickelTest() {
 
-        Coin coin = new Coin(CoinType.NICKEL);
 
-        vendingMachine.acceptCoins(coin);
+        vendingMachine.acceptCoin(Coin.NICKEL);
 
         double actualAmount = 0.05;
 
-        double expectedAmount = vendingMachine.getCurrentAmount();
+        double expectedAmount = vendingMachine.getCurrentBalance();
 
-        Assert.assertEquals(actualAmount,expectedAmount);
+        Assert.assertEquals(actualAmount, expectedAmount);
 
     }
 
     @Test
-    public void insertDimeTest(){
+    public void insertDimeTest() {
 
-        Coin coin = new Coin(CoinType.DIME);
 
-        vendingMachine.acceptCoins(coin);
+        vendingMachine.acceptCoin(Coin.DIME);
 
         double actualAmount = 0.1;
 
-        double expectedAmount = vendingMachine.getCurrentAmount();
+        double expectedAmount = vendingMachine.getCurrentBalance();
 
-        Assert.assertEquals(actualAmount,expectedAmount);
+        Assert.assertEquals(actualAmount, expectedAmount);
     }
 
 
     @Test
-    public void insertPennieCoinTest(){
+    public void insertPennieCoinTest() throws NotSufficientChangeException {
 
-        Coin coin = new Coin(CoinType.PENNIE);
 
-        vendingMachine.acceptCoins(coin);
+        vendingMachine.acceptCoin(Coin.PENNIE);
 
         double actualAmount = 0.01;
 
-        double expectedAmount = vendingMachine.getCoinReturn();
+        double expectedAmount = vendingMachine.getRefund().stream().mapToDouble(coin -> coin.getValue()).sum();
 
 
         Assert.assertFalse(actualAmount != expectedAmount);
@@ -84,32 +67,17 @@ public class AcceptCoinsTest {
     }
 
 
-
     @Test
-    public void insertQuarterTest(){
+    public void insertQuarterTest() {
 
-        Coin coin = new Coin(CoinType.QUARTER);
 
-        vendingMachine.acceptCoins(coin);
+        vendingMachine.acceptCoin(Coin.QUARTER);
 
         double actualAmount = 0.25;
 
-        double expectedAmount = vendingMachine.getCurrentAmount();
+        double expectedAmount = vendingMachine.getCurrentBalance();
 
-        Assert.assertEquals(actualAmount,expectedAmount);
+        Assert.assertEquals(actualAmount, expectedAmount);
     }
-
-
-
-    @Test
-    public void showDisplay(){
-
-        String actualMessage = vendingMachine.getDisplay();
-
-        String expectMessage = "INSERT COIN";
-
-        Assert.assertEquals(expectMessage.toLowerCase(),actualMessage.toLowerCase());
-    }
-
 
 }

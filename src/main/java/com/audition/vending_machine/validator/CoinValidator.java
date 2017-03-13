@@ -1,7 +1,6 @@
 package com.audition.vending_machine.validator;
 
 import com.audition.vending_machine.model.Coin;
-import com.audition.vending_machine.model.CoinType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,24 +9,23 @@ import java.util.List;
  * Created by larrywilson on 3/9/17.
  */
 public class CoinValidator {
-    private static List<CoinType> validCoinTypes;
+    private static List<Coin> validCoinTypes;
 
-    public CoinValidator() {
-        this.validCoinTypes = new ArrayList<CoinType>();
+    static{
+        validCoinTypes = new ArrayList();
 
-        validCoinTypes.add(CoinType.NICKEL);
-        validCoinTypes.add(CoinType.DIME);
-        validCoinTypes.add(CoinType.QUARTER);
-
-
+        validCoinTypes.add(Coin.NICKEL);
+        validCoinTypes.add(Coin.DIME);
+        validCoinTypes.add(Coin.QUARTER);
     }
 
-    public CoinValidator(List<CoinType> validCoinTypes) {
+
+    public CoinValidator(List<Coin> validCoinTypes) {
         this.validCoinTypes = validCoinTypes;
     }
 
     public static boolean isCoinValid(Coin coin) {
-        if(validCoinTypes.contains(coin.getCoinType())){
+        if(validCoinTypes.contains(coin)){
             return true;
         }
             return false;
