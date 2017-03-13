@@ -1,5 +1,7 @@
 package com.audition.vending_machine.model;
 
+import com.audition.vending_machine.exception.SoldOutException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,10 +33,12 @@ public class Inventory<T> {
     }
 
 
-    public void deduct(T item) {
+    public void deduct(T item) throws SoldOutException {
         if (hasItem(item)) {
             int count = inventory.get(item);
             inventory.put(item, count - 1);
+        }else{
+            throw new SoldOutException("Product is out!");
         }
     }
 

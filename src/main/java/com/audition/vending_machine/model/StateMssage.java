@@ -7,6 +7,7 @@ public enum StateMssage {
     Insert_COIN("INSERT COIN"),
     THANK_YOU_MESSAGE("THANK YOU!"),
     NO_SUFFCIENT_CHANGE("NO SUFFICIENT CHANGE!"),
+    SOLD_OUT_MESSAGE("PRODUCT IS OUT!"),
     CUSTOM_STATE_MESSAGE("");
 
     private String value;

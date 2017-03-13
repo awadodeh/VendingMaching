@@ -3,6 +3,8 @@ package com.audition.vending_machine;
 import com.audition.vending_machine.application.VendingMachine;
 import com.audition.vending_machine.application.VendingMachineFactory;
 import com.audition.vending_machine.exception.NotSufficientChangeException;
+import com.audition.vending_machine.exception.NotSufficientFundException;
+import com.audition.vending_machine.exception.SoldOutException;
 import com.audition.vending_machine.model.Bucket;
 import com.audition.vending_machine.model.Coin;
 import com.audition.vending_machine.model.Product;
@@ -28,7 +30,7 @@ public class SelectProductTests {
 
 
     @Test
-    public void testBuyItemWithExactPrice()  {
+    public void testBuyItemWithExactPrice() throws SoldOutException {
 
         vendingMachine.acceptCoin(Coin.QUARTER);
         vendingMachine.acceptCoin(Coin.QUARTER);
@@ -41,6 +43,8 @@ public class SelectProductTests {
             bucket = vendingMachine.selectProductAndCollectChange(Product.COLA);
         }catch(NotSufficientChangeException ex){
             ex.printStackTrace();
+        } catch (NotSufficientFundException e) {
+            e.printStackTrace();
         }
 
         Product product = bucket.getFirst();

@@ -3,6 +3,7 @@ package com.audition.vending_machine;
 import com.audition.vending_machine.application.VendingMachine;
 import com.audition.vending_machine.application.VendingMachineFactory;
 import com.audition.vending_machine.exception.NotSufficientChangeException;
+import com.audition.vending_machine.exception.SoldOutException;
 import com.audition.vending_machine.model.Coin;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -25,7 +26,7 @@ public class ReturnCoinsTests {
     }
 
     @Test
-    public void testRefund() throws NotSufficientChangeException {
+    public void testRefund() throws NotSufficientChangeException, SoldOutException {
 
         vendingMachine.acceptCoin(Coin.PENNIE);
         vendingMachine.acceptCoin(Coin.DIME);

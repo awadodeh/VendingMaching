@@ -1,5 +1,7 @@
 package com.audition.vending_machine.application;
 import com.audition.vending_machine.exception.NotSufficientChangeException;
+import com.audition.vending_machine.exception.NotSufficientFundException;
+import com.audition.vending_machine.exception.SoldOutException;
 import com.audition.vending_machine.model.Bucket;
 import com.audition.vending_machine.model.Coin;
 import com.audition.vending_machine.model.Product;
@@ -16,9 +18,9 @@ public interface VendingMachine {
 
     double getCurrentBalance();
 
-    List<Coin> getRefund() throws NotSufficientChangeException;
+    List<Coin> getRefund() throws NotSufficientChangeException, SoldOutException;
 
     String getDisplay();
 
-    Bucket<Product, List<Coin>> selectProductAndCollectChange(Product product) throws NotSufficientChangeException;
+    Bucket<Product, List<Coin>> selectProductAndCollectChange(Product product) throws NotSufficientChangeException, NotSufficientFundException, SoldOutException;
 }

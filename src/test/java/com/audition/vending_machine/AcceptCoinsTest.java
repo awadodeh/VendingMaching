@@ -3,6 +3,7 @@ package com.audition.vending_machine;
 import com.audition.vending_machine.application.VendingMachine;
 import com.audition.vending_machine.application.VendingMachineFactory;
 import com.audition.vending_machine.exception.NotSufficientChangeException;
+import com.audition.vending_machine.exception.SoldOutException;
 import com.audition.vending_machine.model.Coin;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -52,7 +53,7 @@ public class AcceptCoinsTest {
 
 
     @Test
-    public void insertPennieCoinTest() throws NotSufficientChangeException {
+    public void insertPennieCoinTest() throws NotSufficientChangeException, SoldOutException {
 
 
         vendingMachine.acceptCoin(Coin.PENNIE);

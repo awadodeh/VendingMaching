@@ -1,6 +1,8 @@
 package com.audition.vending_machine.application;
 
 import com.audition.vending_machine.exception.NotSufficientChangeException;
+import com.audition.vending_machine.exception.NotSufficientFundException;
+import com.audition.vending_machine.exception.SoldOutException;
 import com.audition.vending_machine.model.*;
 import com.audition.vending_machine.validator.CoinValidator;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class VendingMachineImpl implements VendingMachine {
 
     private Inventory<Coin> cashInventory = new Inventory<Coin>();
+    private Inventory<Product> productInventory = new Inventory();
 
     private double currentBalance;
     private double coinReturn;
@@ -45,7 +48,7 @@ public class VendingMachineImpl implements VendingMachine {
     }
 
 
-    public List<Coin> getRefund() throws NotSufficientChangeException {
+    public List<Coin> getRefund() throws NotSufficientChangeException, SoldOutException {
 
         List<Coin> refund = getChange(currentBalance + coinReturn);
         updateCashInventory(refund);
@@ -63,9 +66,14 @@ public class VendingMachineImpl implements VendingMachine {
         return displayMessage;
     }
 
-    public Bucket<Product, List<Coin>> selectProductAndCollectChange(Product product) {
+
+    public Bucket<Product, List<Coin>> selectProductAndCollectChange(Product product) throws NotSufficientFundException, NotSufficientChangeException, SoldOutException {
 
         this.currentProduct = product;
+
+        Product collectProduct = collectProduct();
+
+
         totalSales = totalSales + currentProduct.getProductPrice();
 
         List<Coin> change = null;
@@ -79,9 +87,29 @@ public class VendingMachineImpl implements VendingMachine {
 
         showDisplayMessage(StateMssage.THANK_YOU_MESSAGE);
 
-        return new Bucket<Product, List<Coin>>(product, change);
+        return new Bucket<Product, List<Coin>>(collectProduct, change);
 
     }
+
+
+    private Product collectProduct() throws NotSufficientChangeException, NotSufficientFundException, SoldOutException {
+        if (isFullPaid()) {
+            if (hasSufficientChange()) {
+
+                try{
+                    productInventory.deduct(currentProduct);
+                }catch (SoldOutException ex){
+                    showDisplayMessage(StateMssage.SOLD_OUT_MESSAGE);
+                    throw new SoldOutException(StateMssage.SOLD_OUT_MESSAGE.getValue());
+                }
+                return currentProduct;
+            }
+            throw new NotSufficientChangeException("Not Sufficient change in Inventory");
+        }
+        double remainingBalance = currentProduct.getProductPrice() - currentBalance;
+        throw new NotSufficientFundException("Price not full paid, remaining : ", remainingBalance);
+    }
+
 
     private void showDisplayMessage(StateMssage stateMssage) {
 
@@ -90,7 +118,7 @@ public class VendingMachineImpl implements VendingMachine {
     }
 
 
-    private List<Coin> collectChange() throws NotSufficientChangeException {
+    private List<Coin> collectChange() throws NotSufficientChangeException, SoldOutException {
         double changeAmount = currentBalance - currentProduct.getProductPrice();
         List<Coin> change = getChange(changeAmount);
         updateCashInventory(change);
@@ -100,7 +128,7 @@ public class VendingMachineImpl implements VendingMachine {
     }
 
 
-    private void updateCashInventory(List<Coin> change) {
+    private void updateCashInventory(List<Coin> change) throws SoldOutException {
         for (Coin c : change) {
             cashInventory.deduct(c);
         }
@@ -116,6 +144,9 @@ public class VendingMachineImpl implements VendingMachine {
             cashInventory.put(c, 5);
         }
 
+        for(Product i : Product.values()){
+            productInventory.put(i, 5);
+        }
     }
 
 
@@ -163,5 +194,28 @@ public class VendingMachineImpl implements VendingMachine {
         return changes;
     }
 
+
+    private boolean isFullPaid() {
+        if (currentBalance >= currentProduct.getProductPrice()) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean hasSufficientChange() {
+        return hasSufficientChangeForAmount(currentBalance - currentProduct.getProductPrice());
+    }
+
+
+    private boolean hasSufficientChangeForAmount(double amount) {
+        boolean hasChange = true;
+        try {
+            getChange(amount);
+        } catch (NotSufficientChangeException nsce) {
+            return hasChange = false;
+        }
+        return hasChange;
+    }
 
 }
