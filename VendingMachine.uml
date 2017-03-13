@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.audition.vending_machine.application.VendingMachine</OriginalElement>
+  <nodes>
+    <node x="868.2916666666666" y="0.0">com.audition.vending_machine.exception.SoldOutException</node>
+    <node x="353.04166666666663" y="0.0">com.audition.vending_machine.exception.NotSufficientChangeException</node>
+    <node x="0.0" y="815.0">com.audition.vending_machine.model.StateMssage</node>
+    <node x="0.0" y="145.0">com.audition.vending_machine.exception.NotSufficientFundException</node>
+    <node x="884.0" y="134.0">com.audition.vending_machine.model.Coin</node>
+    <node x="641.0" y="79.0">com.audition.vending_machine.model.Inventory</node>
+    <node x="227.0" y="123.0">com.audition.vending_machine.model.Product</node>
+    <node x="1067.0" y="90.0">com.audition.vending_machine.application.VendingMachine</node>
+    <node x="474.0" y="123.0">com.audition.vending_machine.model.Bucket</node>
+    <node x="525.75" y="719.0">com.audition.vending_machine.application.VendingMachineFactory</node>
+    <node x="462.25" y="310.0">com.audition.vending_machine.application.VendingMachineImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.model.Coin">
+      <point x="104.22222222222223" y="-179.5" />
+      <point x="800.9722222222222" y="270.0" />
+      <point x="965.0" y="270.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.exception.NotSufficientChangeException">
+      <point x="-156.33333333333326" y="-179.5" />
+      <point x="540.4166666666667" y="280.0" />
+      <point x="216.5" y="280.0" />
+      <point x="216.5" y="54.0" />
+      <point x="408.54166666666663" y="54.0" />
+      <point x="-55.5" y="14.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.application.VendingMachine">
+      <point x="208.44444444444446" y="-179.5" />
+      <point x="905.1944444444445" y="290.0" />
+      <point x="1201.5" y="290.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineFactory" target="com.audition.vending_machine.application.VendingMachineImpl">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="179.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.model.Product">
+      <point x="-104.22222222222217" y="-179.5" />
+      <point x="592.5277777777778" y="270.0" />
+      <point x="340.5" y="270.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.model.Inventory" target="com.audition.vending_machine.exception.SoldOutException">
+      <point x="55.75" y="-80.5" />
+      <point x="808.25" y="54.0" />
+      <point x="904.0416666666666" y="54.0" />
+      <point x="-35.75" y="14.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.exception.SoldOutException">
+      <point x="156.33333333333334" y="-179.5" />
+      <point x="853.0833333333334" y="280.0" />
+      <point x="1056.5" y="280.0" />
+      <point x="1056.5" y="54.0" />
+      <point x="975.5416666666666" y="54.0" />
+      <point x="35.75" y="14.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.model.Inventory" target="com.audition.vending_machine.exception.NotSufficientChangeException">
+      <point x="-55.75" y="-80.5" />
+      <point x="696.75" y="54.0" />
+      <point x="519.5416666666666" y="54.0" />
+      <point x="55.5" y="14.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.model.Bucket">
+      <point x="-52.111111111111086" y="-179.5" />
+      <point x="644.6388888888889" y="260.0" />
+      <point x="547.5" y="260.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.exception.NotSufficientFundException">
+      <point x="-208.44444444444434" y="-179.5" />
+      <point x="488.30555555555566" y="290.0" />
+      <point x="103.0" y="290.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.audition.vending_machine.application.VendingMachineImpl" target="com.audition.vending_machine.model.Inventory">
+      <point x="0.0" y="-179.5" />
+      <point x="-55.75" y="80.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="228.0" y="295.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
