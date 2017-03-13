@@ -128,7 +128,7 @@ public class VendingMachineImpl implements VendingMachine {
     }
 
 
-    private void updateCashInventory(List<Coin> change) throws SoldOutException {
+    private void updateCashInventory(List<Coin> change) throws SoldOutException, NotSufficientChangeException {
         for (Coin c : change) {
             cashInventory.deduct(c);
         }
@@ -141,7 +141,7 @@ public class VendingMachineImpl implements VendingMachine {
 
     private void initialize() {
         for (Coin c : Coin.values()) {
-            cashInventory.put(c, 5);
+            cashInventory.put(c, 3);
         }
 
         for(Product i : Product.values()){

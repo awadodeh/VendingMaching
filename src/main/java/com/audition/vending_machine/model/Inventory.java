@@ -1,5 +1,6 @@
 package com.audition.vending_machine.model;
 
+import com.audition.vending_machine.exception.NotSufficientChangeException;
 import com.audition.vending_machine.exception.SoldOutException;
 
 import java.util.HashMap;
@@ -33,12 +34,17 @@ public class Inventory<T> {
     }
 
 
-    public void deduct(T item) throws SoldOutException {
+    public void deduct(T item) throws SoldOutException, NotSufficientChangeException {
         if (hasItem(item)) {
             int count = inventory.get(item);
             inventory.put(item, count - 1);
         }else{
-            throw new SoldOutException("Product is out!");
+            if(item instanceof Product){
+                throw new SoldOutException("Product is out!");
+            }else{
+                throw new NotSufficientChangeException("No Sufficient Change In The Machine!");
+            }
+
         }
     }
 
